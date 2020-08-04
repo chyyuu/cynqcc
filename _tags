@@ -1,0 +1,31 @@
+# OASIS_START
+# DO NOT EDIT (digest: 37f40173f2827c471fcb557658818cf6)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Executable nqcc
+"src/nqcc.byte": pkg_batteries
+"src/nqcc.byte": pkg_str
+<src/*.ml{,i,y}>: pkg_str
+# Library nqcc_lib
+"src/nqcc_lib.cmxs": use_nqcc_lib
+<src/*.ml{,i,y}>: pkg_batteries
+# Executable test_nqcc
+"tst/test_nqcc.byte": pkg_batteries
+"tst/test_nqcc.byte": pkg_oUnit
+"tst/test_nqcc.byte": use_nqcc_lib
+<tst/*.ml{,i,y}>: pkg_batteries
+<tst/*.ml{,i,y}>: pkg_oUnit
+<tst/*.ml{,i,y}>: use_nqcc_lib
+# OASIS_STOP

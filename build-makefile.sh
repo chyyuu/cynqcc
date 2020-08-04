@@ -1,1 +1,1 @@
-oasis setup -setup-update dynami
+oasis setup -setup-update dynamic

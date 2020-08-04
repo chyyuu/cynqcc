@@ -7,3 +7,6 @@ setup.data
 setup.log
 out
 assembly.s
+*.mldylib
+*.mllib
+META
