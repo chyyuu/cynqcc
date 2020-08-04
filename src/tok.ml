@@ -6,5 +6,6 @@ type token =
   | Semicolon
   | IntKeyword
   | ReturnKeyword
+  | Minus  
   | Int of int
   | Id of string

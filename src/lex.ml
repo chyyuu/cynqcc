@@ -27,13 +27,14 @@ let rec lex input =
         if String.length input = 0
         then []
         else
-            let tok, remaining_program = 
+            let tok, remaining_program =
                 match String.explode input with
                 | '{'::rest -> (Tok.OpenBrace, String.implode rest)
-                | '}'::rest -> (CloseBrace, String.implode rest)
-                | '('::rest -> (OpenParen, String.implode rest)
-                | ')'::rest -> (CloseParen, String.implode rest)    
-                | ';'::rest -> (Semicolon, String.implode rest)
+                | '}'::rest -> (Tok.CloseBrace, String.implode rest)
+                | '('::rest -> (Tok.OpenParen, String.implode rest)
+                | ')'::rest -> (Tok.CloseParen, String.implode rest)
+                | '-'::rest -> (Tok.Minus, String.implode rest)                
+                | ';'::rest -> (Tok.Semicolon, String.implode rest)
                 | _ -> get_kw_int_or_id input
             in
             tok :: (lex remaining_program)
@@ -42,13 +43,14 @@ let tok_to_string t =
     let s = 
         match t with
         | Tok.OpenBrace -> "{"
-        | CloseBrace -> "}"
-        | OpenParen -> "("
-        | CloseParen -> ")"
-        | Semicolon -> ";"
-        | IntKeyword -> "INT"
-        | ReturnKeyword -> "RETURN"
-        | Int i -> Printf.sprintf "INT<%d>" i
-        | Id id -> Printf.sprintf "ID<%s>" id
+        | Tok.CloseBrace -> "}"
+        | Tok.OpenParen -> "("
+        | Tok.CloseParen -> ")"
+        | Tok.Semicolon -> ";"
+        | Tok.IntKeyword -> "INT"
+        | Tok.ReturnKeyword -> "RETURN"
+        | Tok.Minus -> "-"        
+        | Tok.Int i -> Printf.sprintf "INT<%d>" i
+        | Tok.Id id -> Printf.sprintf "ID<%s>" id
     in
     s

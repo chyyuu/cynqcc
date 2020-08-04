@@ -3,8 +3,10 @@ type const =
     | String of string
 type type_def = 
     | IntType
+type unop = Negate
 type exp = 
         |Const of const
+        |UnOp of unop * exp        
 type statement = 
     | Return
     | ReturnVal of exp (* should we add a return_exp instead? *)
