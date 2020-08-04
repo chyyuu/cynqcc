@@ -5,3 +5,5 @@ _build
 
 setup.data
 setup.log
+out
+assembly.s
