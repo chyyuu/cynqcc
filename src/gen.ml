@@ -1,16 +1,16 @@
 open Ast
+open Batteries
 
 module Gen : sig
-    val generate : AST.prog -> unit
+  val generate : string -> AST.prog -> unit
 end =
 struct
 
+  let generate filename prog =
 
-
-    let generate prog =
-
-        (* Open assembly file for writing *) 
-        let chan = open_out "assembly.s" in
+      (* Open assembly file for writing *) 
+      let filename_asm = String.splice filename (-1) 1 "s" in
+      let chan = open_out filename_asm in
 
         (* main is always entry point *)
         let _ = Printf.fprintf chan "    .globl main\n" in
