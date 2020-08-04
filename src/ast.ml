@@ -2,11 +2,9 @@ module AST =
     struct
         type const = 
             | Int of int
-            | Char of char
             | String of string
         type type_def = 
             | IntType
-            | CharType
         type exp = Const of const
         type statement = 
             | Return

@@ -17,12 +17,6 @@ struct
     let rec parse_fun_params tokens =
         match tokens with
         | Lex.CloseParen::rest -> ([], rest)
-        | Lex.IntKeyword::(Lex.Id name)::rest -> 
-            let other_params, rest = parse_fun_params rest in
-            (AST.Param(AST.IntType, AST.ID(name))::other_params, rest)
-        | Lex.CharKeyword::(Lex.Id name)::rest -> 
-            let other_params, rest = parse_fun_params rest in
-            (AST.Param(AST.CharType, AST.ID(name))::other_params, rest)
         | _ -> failwith("Parse error in parse_fun_params")
 
     let parse_exp tokens =
@@ -53,7 +47,6 @@ struct
         let fun_type, fun_name, rest = 
             match tokens with
             | Lex.IntKeyword::(Lex.Id name)::Lex.OpenParen::rest -> (AST.IntType, AST.ID(name), rest)
-            | Lex.CharKeyword::(Lex.Id name)::Lex.OpenParen::rest -> (AST.CharType, AST.ID(name), rest)
             | _ -> failwith("Parse error in parse_fun: bad function type or name")
         in 
         let fun_params, rest = parse_fun_params rest in
